@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros with context %}
+{% block content %}
+<div class="max-w-screen-sm">
+    {{ macros.div_welcome(lang) }}
+    
+    {% if lang == 'NL' %}
+
+        {% set wob_txt = ['Programmatic SEO website met te verwachten weer op meerdere niveaus: overzicht per land, details per bestemming of nog gedetailleerder per maand (bv. "Barcelona in september").','Website bevat naast de data meerdere interactieve kaarten en grafieken.'] %}
+        {% set wob_n_pages = "1000+ pagina's" %}
+        {% set wob_date_release = 'maart 2025' %}
+        
+        {% set pa_txt = ['Upload je eigen afbeelding of foto, en genereer pixel art. Output kun je zelf manipuleren en downloaden als png of svg.','Image conversion met behulp van tensorflow.js en javascript.'] %}
+        {% set pa_website_type = 'interactieve tool' %}
+        {% set pa_date_release = 'december 2024' %}
+
+        {% set kd_txt = ['Programmatic SEO website met kalenders per jaar en per maand, waarin je snel informatie per datum kunt vinden.','Bijvoorbeeld weeknummer, dag van de week, zonsopkomst en zonsondergang.','Bevat ook informatie over feestdagen in de komende jaren.','Kalenders zijn ook te downloaden als PDF.'] %}
+        {% set kd_n_pages = "1000+ pagina's" %}
+        {% set kd_date_release = 'maart 2024' %}
+
+        {% set eied_txt = ['Tutorial website voor een aantal veelgebruikte Excelfuncties.','Bevat formules (combinatie van meerdere functies) voor veelvoorkomende problemen.','Bevat ook een lange lijst met vertalingen tussen de Nederlandse en Engelstalige versie van Excel.'] %}
+        {% set eied_website_type = "tutorials" %}
+        {% set eied_date_release = 'januari 2024' %}
+        
+    {% elif lang == 'EN' %}
+
+        {% set wob_txt = ['This is a programmatic SEO website that provides detailed weather forecasts at various levels of granularity.','Users can get an overview by country, drill down to specific destinations, or even see monthly forecasts (e.g., "Barcelona in September").','The site enhances the data with interactive maps and charts for a more engaging user experience.'] %}
+        {% set wob_n_pages = '1000+ pages' %}
+        {% set wob_date_release = 'March 2025' %}
+        
+        {% set pa_txt = ['Pixel art generator: Upload your own pictures and get a pixel art result.','You can edit the output and download it as a png or svg','Made with tensorflow.js and javascript.'] %}
+        {% set pa_website_type = 'interactive tool' %}
+        {% set pa_date_release = 'December 2024' %}
+
+        {% set kd_txt = ['A programmatic SEO calendar website offering yearly and monthly views, enabling users to easily find date-related information.','Includes week numbers, day of the week, sunrise and sunset times, and future holiday dates.','Yearly calendars are downloadable as PDFs.'] %}
+        {% set kd_n_pages = "100+ pages" %}
+        {% set kd_date_release = 'March 2024' %}
+
+        {% set eied_txt = ['An Excel tutorial website covering popular functions and formulas.','Provides solutions to common problems using combinations of functions, along with a comprehensive translation list for Dutch and English Excel function names.'] %}
+        {% set eied_website_type = "tutorials" %}
+        {% set eied_date_release = 'January 2024' %}
+        
+    {% endif %}
+
+    <div class="grid gap-y-8 md:gap-y-4 max-w-screen-sm mt-4">
+
+        {{ macros.div_project(
+            title='Weer op bestemming',
+            slug='weeropbestemming_nl',
+            img_src=url_for('static',filename='images/card-weeropbestemming_nl.png'),
+            url='https://www.weeropbestemming.nl',
+            date_release=wob_date_release,
+            n_pages=wob_n_pages,
+            list_txt=wob_txt,
+            list_tags=['Python Flask','Github actions','D3.js','TailwindCSS','javascript']
+            ) 
+        }}
+        {{ macros.div_project(
+            title='Pixelated artwork',
+            slug='pixelatedartwork_com',
+            img_src=url_for('static',filename='images/card-pixelatedartwork_com.png'),
+            url='https://www.pixelatedartwork.com',
+            date_release=pa_date_release,
+            website_type=pa_website_type,
+            list_txt=pa_txt,
+            list_tags=['tensorflow.js','Python Flask','TailwindCSS','DaisyUI']
+            ) 
+        }}
+        {{ macros.div_project(
+            title='Kalenderdata',
+            slug='kalenderdata_nl',
+            img_src=url_for('static',filename='images/card-kalenderdata_nl.png'),
+            url='https://www.kalenderdata.nl',
+            date_release=kd_date_release,
+            n_pages=kd_n_pages,
+            list_txt=kd_txt,
+            list_tags=['Python Flask','TailwindCSS','javascript']
+            ) 
+        }}
+        
+        {{ macros.div_project(
+            title='Excel in een dag',
+            img_src=url_for('static',filename='images/card-excelineendag_nl.png'),
+            slug='excelineendag_nl',
+            url='https://www.excelineendag.nl',
+            date_release=eied_date_release,
+            website_type=eied_website_type,
+            list_txt=eied_txt,
+            list_tags=['Python Flask','Excel','TailwindCSS']
+            ) 
+        }}
+    </div>
+</div>
+
+
+{% endblock content %}

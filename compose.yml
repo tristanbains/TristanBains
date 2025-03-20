@@ -1,0 +1,37 @@
+services:
+  web:
+    # build: .
+    image: flask-jupyter-tailwindcss-daisyui
+    # command: python app.py runserver 0.0.0.0:5000
+    volumes:
+      - .:/app
+    ports:
+      - "5160:5000"
+    entrypoint: python app.py
+  
+  # tailwind:
+  #   # image: docker_flask_tailwindcss_daisyui-web:latest
+  #   image: node:18-alpine
+  #   volumes:
+  #     - .:/app
+  #   depends_on:
+  #     - web
+  #   # restart: "no"
+  #   working_dir: /app
+  #   entrypoint: npm run build-css
+
+
+  jupyter:
+    # env_file:
+    #   - .env
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: flask-jupyter-tailwindcss-daisyui
+    ports:
+      - "8160:8888"
+    volumes:
+      - ./notebooks:/app
+    entrypoint: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token=''
+
+

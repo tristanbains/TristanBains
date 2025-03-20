@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros with context %}
+{% block content %}
+<div class="bg-yellow-50">
+    HELLO THERE FROM INDEX
+</div>
+<div class="bg-blue-50">
+Current: {{lang}}
+Link to other: {{url_other}}
+</div>
+<div class="bg-red-200">
+    <a href="{{url_for('page',path='pixelatedartwork_com')}}" class="link link-hover text-sky-500">PixelatedArtwork.com</a>
+</div>
+{% endblock content %}

@@ -1,0 +1,120 @@
+
+{% macro topmenu() %}
+{% set boolean_index = (request.path=='/')%}
+<div class="relative z-20">
+    <div class="flex justify-between">
+        <div class="flex md:block lg:flex items-center max-w-full">
+            <div class="mb-0 md:mb-4 lg:mb-0 flex flex-no-shrink pr-4 md:pr-6 lg:pr-12">
+                <a href="{{ url_for('index') }}" class="flex items-center no-underline">
+                    <img src="https://avatars.githubusercontent.com/u/4323180" alt="" class="h-10 w-10 md:h-12 md:w-12 lg:h-20 lg:w-20 rounded-full">
+                </a>
+            </div>
+            <div class="">
+                <a class="block text-black no-underline font-bold text-xl lg:text-3xl font-extrabold leading-none lg:leading-tight" href="{{ url_for('index') }}">
+                    Tristan Bains
+                </a>
+                <p class="p-0.5 lg:pl-1 text-gray-700 text-xs md:text-sm lg:text-base">Data scientist</p>
+                <div class="hidden md:flex mt-3 lg:mt-4 uppercase tracking-wide text-sm gap-6 pl-1">
+                    <a href="{{ url_for('index') }}" class="{% if boolean_index%}text-black{%else%}text-gray-500{%endif%} font-semibold no-underline hover:text-black">Projects</a>
+                    <a href="https://www.linkedin.com/in/tristanbains/" class="group inline-flex text-gray-500 font-semibold no-underline hover:text-black">
+                        LinkedIn
+                        <svg class="ml-1 mt-0.5 fill-current group-hover:fill-blue-500" width="15" height="15" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>linkedin</title><path d="M28.778 1.004h-25.56c-0.008-0-0.017-0-0.027-0-1.199 0-2.172 0.964-2.186 2.159v25.672c0.014 1.196 0.987 2.161 2.186 2.161 0.010 0 0.019-0 0.029-0h25.555c0.008 0 0.018 0 0.028 0 1.2 0 2.175-0.963 2.194-2.159l0-0.002v-25.67c-0.019-1.197-0.994-2.161-2.195-2.161-0.010 0-0.019 0-0.029 0h0.001zM9.9 26.562h-4.454v-14.311h4.454zM7.674 10.293c-1.425 0-2.579-1.155-2.579-2.579s1.155-2.579 2.579-2.579c1.424 0 2.579 1.154 2.579 2.578v0c0 0.001 0 0.002 0 0.004 0 1.423-1.154 2.577-2.577 2.577-0.001 0-0.002 0-0.003 0h0zM26.556 26.562h-4.441v-6.959c0-1.66-0.034-3.795-2.314-3.795-2.316 0-2.669 1.806-2.669 3.673v7.082h-4.441v-14.311h4.266v1.951h0.058c0.828-1.395 2.326-2.315 4.039-2.315 0.061 0 0.121 0.001 0.181 0.003l-0.009-0c4.5 0 5.332 2.962 5.332 6.817v7.855z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="pl-2 py-1 md:py-2">
+            {{ switch_lang(lang) }}
+        </div>
+    </div>
+    
+    <div class="md:hidden mt-6 uppercase tracking-wide text-xs flex gap-6">
+        <a href="{{ url_for('index') }}" class="{% if boolean_index%}text-black{%else%}text-gray-500{%endif%} font-semibold no-underline hover:text-black">Projects</a>
+        <a href="https://www.linkedin.com/in/tristanbains/" class="group inline-flex text-gray-500 font-semibold no-underline hover:text-black">
+            LinkedIn
+            <svg class="ml-1 fill-current group-hover:fill-blue-500" width="14" height="14" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>linkedin</title><path d="M28.778 1.004h-25.56c-0.008-0-0.017-0-0.027-0-1.199 0-2.172 0.964-2.186 2.159v25.672c0.014 1.196 0.987 2.161 2.186 2.161 0.010 0 0.019-0 0.029-0h25.555c0.008 0 0.018 0 0.028 0 1.2 0 2.175-0.963 2.194-2.159l0-0.002v-25.67c-0.019-1.197-0.994-2.161-2.195-2.161-0.010 0-0.019 0-0.029 0h0.001zM9.9 26.562h-4.454v-14.311h4.454zM7.674 10.293c-1.425 0-2.579-1.155-2.579-2.579s1.155-2.579 2.579-2.579c1.424 0 2.579 1.154 2.579 2.578v0c0 0.001 0 0.002 0 0.004 0 1.423-1.154 2.577-2.577 2.577-0.001 0-0.002 0-0.003 0h0zM26.556 26.562h-4.441v-6.959c0-1.66-0.034-3.795-2.314-3.795-2.316 0-2.669 1.806-2.669 3.673v7.082h-4.441v-14.311h4.266v1.951h0.058c0.828-1.395 2.326-2.315 4.039-2.315 0.061 0 0.121 0.001 0.181 0.003l-0.009-0c4.5 0 5.332 2.962 5.332 6.817v7.855z"></path></svg>
+        </a>
+    </div>
+</div>
+{% endmacro %}
+
+
+
+{% macro div_project_toc() %}
+{% endmacro %}
+
+{% macro switch_lang(lang) %}
+<a href="{{url_other}}">
+    <div class="text-gray-700 text-sm md:text-md hover:text-sky-500 hover:underline">
+        {% if lang=='NL' %}
+        <p>Switch to English version</p>
+        {% elif lang=='EN' %}
+        <p>Ga naar Nederlands</p>
+        {% endif %}
+    </div>
+</a>
+{% endmacro %}
+
+
+{% macro div_project(title,slug,list_txt,url,img_src=None,list_tags=None,n_pages=None,website_type=None,date_release=None) %}
+<div id="{{slug}}" class="max-w-screen-sm bg-white shadow-xl rounded-lg overflow-hidden md:flex">
+    <div id="X" class="bg-cover bg-left-top h-60 md:h-auto md:min-w-60" {% if img_src %}style="background-image: url('{{img_src}}');"{% endif %}>
+    </div>
+    <div>
+        <div class="pl-4 md:pl-12 py-4 pr-4 md:py-5 md:pr-5 bg-gray-50">
+            <a class="group inline-flex" href="{{url}}">
+                <img class="h-6 md:h-8 w-6 md:w-8 mr-2 rounded-lg" src="{{url_for('static',filename='images/svg/favicon-'+slug+'.svg')}}" alt="{{title}}">
+                <p class="group-hover:underline group-hover:text-sky-500 font-bold text-xl md:text-2xl">
+                    {{title}}
+                </p>
+            </a>
+            {% if list_tags %}
+            <div class="flex flex-wrap mt-1 gap-2 -ml-1 mt-4 pr-4">
+                {% for tag in list_tags %}
+                <div class="text-nowrap bg-gray-100 px-2 py-1 rounded-xl font-light text-black text-xs">{{tag}}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <div class="mt-4 max-w-md">
+                {% for txt in list_txt %}
+                    <p class="leading-tight text-gray-700 md:text-lgs mt-4">{{txt}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="pl-4 md:pl-12 py-4 pr-4 md:py-5 md:pr-5 bg-gray-50">
+            <div class="sm:flex sm:justify-between sm:items-center">
+                <div class="text-gray-600 text-xs md:text-sm">
+                    {% if website_type %}
+                    <div class="font-semibold mt-1">{{website_type}}</div>
+                    {% endif %}
+                    {% if n_pages %}
+                    <div class="mt-1">{{n_pages}}</div>
+                    {% endif %}
+                    {% if date_release %}
+                    <div class="mt-1 font-light">{{date_release}}</div>
+                    {% endif %}
+                </div>
+                 <a href="{{url}}">
+                    <button class="mt-3 sm:mt-0 py-2 px-5 md:py-3s md:px-6s bg-yellow-400 hover:bg-yellow-300 font-bold text-black md:text-lgs rounded-lg shadow-md">
+                        {{title}}
+                    </button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endmacro %}
+
+
+
+
+{% macro div_welcome(lang) %}
+<div class="prose-alternative pl-1">
+    {% if lang == 'NL' %}
+    <p>Alle websites hieronder zijn gebouwd met Python Flask en Frozen-Flask. Hosting gebeurt op Cloudflare Pages.</p>
+    {% elif lang == 'EN' %}
+    <p>All website projects below are created with Python Flask and Frozen-Flask. All websites are hosted on Cloudflare Pages, via a Github integration.</p>
+    {% endif %}
+</div>
+{% endmacro %}

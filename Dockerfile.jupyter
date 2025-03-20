@@ -1,0 +1,35 @@
+# # Use a smaller base image
+# FROM python:3.11-slim
+
+# # Install dependencies based on base image
+# RUN apt-get update && apt-get install -y gcc python3-dev
+
+# # Install Python dependencies
+# COPY requirements.txt ./
+# RUN pip install --no-cache-dir -r requirements.txt
+
+# # Final image with Jupyter Notebook
+# FROM quay.io/jupyter/minimal-notebook
+
+# COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+
+# # Fix permissions (adjust paths if needed)
+# RUN fix-permissions "${CONDA_DIR}" && \
+#     fix-permissions "/home/${NB_USER}"
+
+# # Expose the port
+# EXPOSE 8888
+
+
+FROM quay.io/jupyter/minimal-notebook
+
+COPY requirements.txt .
+
+USER root
+RUN apt-get update && apt-get install -y gcc
+# python3-dev
+
+RUN pip install --no-cache-dir -r requirements.txt && \
+    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "/home/${NB_USER}" && \
+    rm requirements.txt

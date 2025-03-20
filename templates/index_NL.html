@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros with context %}
+{% block content %}
+<div class="max-w-screen-sm">
+    <div class="prose-alternative pl-1">
+        <p>Alle websites hieronder zijn gebouwd met Python Flask en Frozen-Flask. Hosting gebeurt op Cloudflare Pages.</p>
+    </div>
+    <!-- lg:grid-cols-2 gap-x-2 lg:gap-x-8 gap-y-2 lg:gap-y-8 -->
+    <div class="grid gap-y-8 md:gap-y-4 max-w-screen-sm mt-4">
+        {{ macros.div_project(
+            title='Weer op bestemming',
+            slug='weeropbestemming_nl',
+            img_src=url_for('static',filename='images/card-weeropbestemming_nl.png'),
+            url='https://www.weeropbestemming.nl',
+            date_release='maart 2025',
+            n_pages='1000+',
+            list_txt=['txt1','txt2'],
+            list_tags=['Python Flask','Github actions','D3.js','TailwindCSS','javascript']
+            ) 
+        }}
+        {{ macros.div_project(
+            title='Pixelated artwork',
+            slug='pixelatedartwork_com',
+            img_src=url_for('static',filename='images/card-pixelatedartwork_com.png'),
+            url='https://www.pixelatedartwork.com',
+            date_release='december 2024',
+            website_type='interactive tool',
+            list_txt=['Upload je eigen afbeelding of foto, en genereer pixel art. Output kun je zelf manipuleren en downloaden als png of svg.','Image conversion met behulp van tensorflow.js en javascript.'],
+            list_tags=['tensorflow.js','Python Flask','TailwindCSS','DaisyUI']
+            ) 
+        }}
+        {{ macros.div_project(
+            title='Kalenderdata',
+            slug='kalenderdata_nl',
+            img_src=url_for('static',filename='images/card-kalenderdata_nl.png'),
+            url='https://www.kalenderdata.nl',
+            date_release='maart 2024',
+            n_pages='100+',
+            list_txt=['Dit is een leuke site met kalenderdata.','txt2'],
+            list_tags=['Python Flask','TailwindCSS','javascript']
+            ) 
+        }}
+        
+        {{ macros.div_project(
+            title='Excel in een dag',
+            img_src=url_for('static',filename='images/card-excelineendag_nl.png'),
+            slug='excelineendag_nl',
+            url='https://www.excelineendag.nl',
+            date_release='januari 2024',
+            website_type='informatiewebsite',
+            list_txt=['txt1','txt2'],
+            list_tags=['Python Flask','Excel','TailwindCSS']
+            ) 
+        }}
+    </div>
+    <!-- <div class="bg-blue-50">
+    Current: {{lang}}
+    Link to other: {{url_other}}
+    </div>
+    <div class="bg-green-200">
+        <a href="{{url_for('page',path='pixelatedartwork_com')}}" class="link link-hover text-sky-500">PixelatedArtwork.com</a>
+    </div> -->
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros with context %}
+{% block content %}
+<div class="max-w-screen-sm prose-alternative">
+    {{page}}
+</div>
+
+<div class="bg-red-500 text-white">
+    {{url_other}}
+</div>
+
+{% endblock content %}

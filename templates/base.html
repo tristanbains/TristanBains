@@ -1,0 +1,25 @@
+{% import "macros.html" as macros with context %}
+<!doctype html>
+<html lang="{{lang}}" data-theme="{{data_theme}}" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/output.css')}}">
+</head>
+<body class="font-sans text-black bg-slate-100 leading-tight antialiased min-h-screen">
+    <div class="py-8 lg:py-16 px-6 md:px-16 lg:px-24">
+
+        <!-- <div class="bg-green-200 h-32">YES FROM THE BASE</div>
+        <div class="bg-red-200">lang:{{lang}}</div>
+        <div class="bg-red-100">lang_other:{{lang_other}}</div>
+        <div class="class bg-green-50">{{dict_website}}</div>
+        <div class="class bg-green-700 text-white">{{dict_website[lang_other]}}</div> -->
+        {{ macros.topmenu() }}
+        <div class="lg:pl-32 mt-12">
+            {% block content %}
+            {% endblock content %}    
+        </div>
+        
+    </div>
+    
+</body>
