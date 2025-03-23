@@ -15,9 +15,11 @@ import sys, os, re, shutil, glob
 import copy
 from urllib.parse import urljoin
 
+from python_code.pseo import *
+
 # ----- SETTINGS -----
 
-lang = 'EN'
+lang = 'NL'
 
 data_theme = 'emerald'
 
@@ -42,19 +44,19 @@ def prerender_jinja(text):
 # ----- DATA -----
 
 
-
 dict_website = {
     'NL':{
         'url':'https://www.tristanbains.nl',
-        'google_analytics_id':None,
+        'google_analytics_id':'G-CN1DRKP00W',
         },
     'EN':{
         'url':'https://www.tristanbains.com',
-        'google_analytics_id':None,
+        'google_analytics_id':'G-Z23V4XBHR3',
     }
 }
 
 lang_other = 'EN' if lang=='NL' else 'NL'
+
 
 # dict_website_lang = dict_website[lang]
 
@@ -88,22 +90,35 @@ def dict_all():
 
 @app.route('/')
 def index():
+    url_this = urljoin(dict_website[lang]['url'],request.path)
     url_other = urljoin(dict_website[lang_other]['url'],request.path)
+    dict_page = {
+        'title':'Tristan Bains | personal website | projects' if lang=='EN' else 'Tristan Bains | persoonlijke website | projecten',
+        'description': 'An overview of all websites I have built so far, and all AI and ML projects I am working on.' if lang=='EN' else 'Een overzicht van alle websites die ik gebouwd heb, en AI en ML projecten waar ik aan werk.',
+    }
     return render_template(
         'index.html',
-        url_other=url_other)
+        url_this=url_this,
+        url_other=url_other,
+        dict_page=dict_page)
 
 
 @app.route("/<path:path>/")
 def page(path):
     path_lang = os.path.join(lang,path)
     page = pages.get_or_404(path_lang)
+    url_this = urljoin(dict_website[lang]['url'],request.path)
     url_other = urljoin(dict_website[lang_other]['url'],request.path)
-    # url_other = dict_website[lang_other]['url']+request.path
+    dict_page = {
+        'title':'ABC' if lang=='EN' else 'XYZ',
+        'description': 'ABC_descr' if lang=='EN' else 'XYZ_descr',
+    }
     return render_template(
         'page.html',
         page=page,
-        url_other=url_other
+        url_this=url_this,
+        url_other=url_other,
+        dict_page=dict_page
     )
 
 
@@ -117,9 +132,11 @@ if __name__ =='__main__':
         freezer.freeze()
         print(f"Building {app.config['FREEZER_DESTINATION']} for TristanBains")
 
-        # folder_build = app.config['FREEZER_DESTINATION']
-        # create_sitemap_xml(base_url=base_url,folder_build=folder_build)
-        # create_robots_txt(base_url=base_url,folder_build=folder_build)
+        base_url = dict_website[lang]['url']
+        folder_build = app.config['FREEZER_DESTINATION']
+
+        create_sitemap_xml(base_url=base_url,folder_build=folder_build)
+        create_robots_txt(base_url=base_url,folder_build=folder_build)
     else:
         # app.run(port=5000)
         app.run(host='0.0.0.0',debug=True,port=5000)
